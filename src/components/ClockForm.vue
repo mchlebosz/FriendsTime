@@ -94,7 +94,7 @@ const searchCities = async () => {
     }
 
     try {
-        const response = await axios.get('https://api.geonames.org/searchJSON', {
+        const response = await axios.get('https://secure.geonames.org/searchJSON', {
             params: {
                 username: 'ksuhiyp', // Replace with your GeoNames username
                 q: cityQuery.value,
@@ -152,7 +152,7 @@ const submitCity = async () => {
 
 const getTimezoneFromCoordinates = async (lat: number, lng: number) => {
     try {
-        const response = await axios.get('https://api.geonames.org/timezoneJSON', {
+        const response = await axios.get('https://secure.geonames.org/timezoneJSON', {
             params: {
                 username: 'ksuhiyp', // Replace with your GeoNames username
                 lat,
