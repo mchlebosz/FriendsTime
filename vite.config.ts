@@ -1,12 +1,12 @@
-import { fileURLToPath, URL } from 'node:url'
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import vueDevTools from 'vite-plugin-vue-devtools'
 import { VitePWA } from 'vite-plugin-pwa'
 import tailwindcss from '@tailwindcss/vite'
+import { resolve } from 'path'
 
 export default defineConfig({
-  base: '/',
+  base: '/FriendsTime/',
   plugins: [
     tailwindcss(),
     vue(),
@@ -58,11 +58,14 @@ export default defineConfig({
   ],
   resolve: {
     alias: {
-      '@': fileURLToPath(new URL('./src', import.meta.url)),
+      '@': resolve(__dirname, 'src'), // Alias for src directory
     },
   },
   build: {
     outDir: 'dist', // Simpler output directory
     emptyOutDir: true,
+    rollupOptions: {
+      input: resolve(__dirname, 'index.html'), // Entry point for the build
+    },
   },
 })
