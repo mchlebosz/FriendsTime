@@ -13,13 +13,14 @@ export default defineConfig({
     vueDevTools(),
     VitePWA({
       registerType: 'autoUpdate',
-      includeAssets: ['favicon.svg', 'pwa-192x192.png', 'pwa-512x512.png'],
+      devOptions: {
+        enabled: true,
+      },
+      includeAssets: ['favicon.ico', 'favicon.svg', 'pwa-192x192.png', 'pwa-512x512.png'],
       manifest: {
         name: 'FriendsTime',
         short_name: 'FriendsTime',
         description: 'A world clock app for your friends',
-        start_url: '/',
-        scope: '/',
         display: 'standalone',
         background_color: '#ffffff',
         theme_color: '#3eaf7c',
@@ -51,21 +52,23 @@ export default defineConfig({
         ],
       },
       workbox: {
-        globPatterns: ['**/*.{js,css,html,ico,png,svg}'],
+        globPatterns: ['**/*.{js,css,html,ico,png,svg,json}'],
+        globIgnores: ['**/node_modules/**/*'],
         navigateFallback: 'index.html',
       },
     }),
   ],
   resolve: {
     alias: {
-      '@': resolve(__dirname, 'src'), // Alias for src directory
+      '@': resolve(__dirname, 'src'),
     },
   },
   build: {
-    outDir: 'dist', // Simpler output directory
-    emptyOutDir: true,
+    outDir: 'dist',
     rollupOptions: {
-      input: resolve(__dirname, 'index.html'), // Entry point for the build
+      input: {
+        main: resolve(__dirname, 'index.html'),
+      },
     },
   },
 })
