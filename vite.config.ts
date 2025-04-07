@@ -22,6 +22,8 @@ export default defineConfig({
         short_name: 'FriendsTime',
         description: 'A world clock app for your friends',
         display: 'standalone',
+        start_url: '/FriendsTime/', // Explicit start URL
+        scope: '/FriendsTime/', // Important for GitHub Pages
         background_color: '#ffffff',
         theme_color: '#3eaf7c',
         icons: [
@@ -54,7 +56,9 @@ export default defineConfig({
       workbox: {
         globPatterns: ['**/*.{js,css,html,ico,png,svg,json}'],
         globIgnores: ['**/node_modules/**/*'],
-        navigateFallback: 'index.html',
+        navigateFallback: '/FriendsTime/index.html', // Explicit fallback
+        cleanupOutdatedCaches: true,
+        clientsClaim: true,
       },
     }),
   ],
