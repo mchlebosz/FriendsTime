@@ -49,7 +49,7 @@
     </div>
 </template>
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import { ref } from 'vue'
 import axios from 'axios'
 import moment from 'moment-timezone'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
@@ -68,7 +68,15 @@ const selectedTimezone = ref('')
 
 // City Search Mode
 const cityQuery = ref('')
-const cityResults = ref<any[]>([])
+interface City {
+    geonameId: number
+    name: string
+    countryName: string
+    lat: number
+    lng: number
+}
+
+const cityResults = ref<City[]>([])
 
 // Format timezone names (e.g. "America/New_York" → "New York (EDT)")
 const formatTimezoneName = (zone: string) => {
@@ -86,7 +94,7 @@ const searchCities = async () => {
     }
 
     try {
-        const response = await axios.get('http://api.geonames.org/searchJSON', {
+        const response = await axios.get('https://api.geonames.org/searchJSON', {
             params: {
                 username: 'ksuhiyp', // Replace with your GeoNames username
                 q: cityQuery.value,
@@ -144,7 +152,7 @@ const submitCity = async () => {
 
 const getTimezoneFromCoordinates = async (lat: number, lng: number) => {
     try {
-        const response = await axios.get('http://api.geonames.org/timezoneJSON', {
+        const response = await axios.get('https://api.geonames.org/timezoneJSON', {
             params: {
                 username: 'ksuhiyp', // Replace with your GeoNames username
                 lat,
