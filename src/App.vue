@@ -2,7 +2,7 @@
   <main
     class="max-w-4xl mx-auto p-4 space-y-6 bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-200 shadow-lg h-full rounded-md">
     <div class="flex justify-between items-center">
-      <img src="./assets/logo.png" alt="Logo" class="w-16 h-16 mr-2 rounded-full" />
+      <img src="./assets/logo.svg" alt="Logo" class="w-16 h-16 mr-2 rounded-full" />
       <h1 class="text-3xl font-bold">Friends Time</h1>
       <ThemeSwitch />
     </div>
